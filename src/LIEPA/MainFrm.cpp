@@ -180,9 +180,9 @@ extern int tono_koeficientas;
 void CMainFrame::OnGreitis()
 {
 	CString s;
-	int ggg; char cc;
+	int ggg;
 	m_editGreitis.GetWindowText(s);
-	int jj = sscanf((LPCTSTR)s, "%d", &ggg, &cc);
+	int jj = sscanf((LPCTSTR)s, "%d", &ggg);
 	if (jj != 1)
 	{
 		ggg = 100;
@@ -194,9 +194,9 @@ void CMainFrame::OnGreitis()
 void CMainFrame::OnTonas()
 {
 	CString s;
-	int ttt; char cc;
+	int ttt;
 	m_editTonas.GetWindowText(s);
-	int jj = sscanf((LPCTSTR)s, "%d", &ttt, &cc);
+	int jj = sscanf((LPCTSTR)s, "%d", &ttt);
 	if (jj != 1)
 	{
 		ttt = 100;

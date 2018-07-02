@@ -138,7 +138,7 @@ int initFaktoriai(char *dirVardas)
 	int ll, j = 0;
 	do
 	{
-		ll = fscanf(pFile, "%s %d %d %d", FonIlg[j].fv, &FonIlg[j].id, &FonIlg[j].vid, &FonIlg[j].min);
+		ll = fscanf(pFile, "%s %hu %hu %hu", FonIlg[j].fv, &FonIlg[j].id, &FonIlg[j].vid, &FonIlg[j].min);
 		for (int k = 0; k < KoefSk; k++)
 			ll += fscanf(pFile, "%lf", &FonIlg[j].koef[k]);
 		fscanf(pFile, "\n");
