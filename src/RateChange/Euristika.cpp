@@ -1,12 +1,3 @@
-///////////////////////////////////////////////////////////////////////////////////////////////////
-//
-// Projektas LIEPA (https://liepa.raðtija.lt)
-// Sintezatoriaus komponentas RateChange.dll
-// Failas Euristika.cpp
-// Autorius dr. Gintaras Skersys
-// 2015 08 11
-//
-///////////////////////////////////////////////////////////////////////////////////////////////////
 // Euristinës funkcijos: 
 // funkcijos, kurios parenka, kuriuos burbulus reikëtø paðalinti ar dubliuoti. 
 // Jos gali ágyvendinti ávairias strategijas.
