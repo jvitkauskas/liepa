@@ -18,50 +18,50 @@ protected: // create from serialization only
 	CRedakView();
 	DECLARE_DYNCREATE(CRedakView)
 
-void Skaityti(CString Zodis);
-LRESULT WindowProc(UINT Message, WPARAM hwo, LPARAM whdr);
+	void Skaityti(CString Zodis);
+	LRESULT WindowProc(UINT Message, WPARAM hwo, LPARAM whdr);
 
-HGLOBAL hData;
-DWORD dwBufLen;
-HWAVEOUT hwo;       // handle of wave output device
-WAVEHDR whdr;
+	HGLOBAL hData;
+	DWORD dwBufLen;
+	HWAVEOUT hwo;       // handle of wave output device
+	WAVEHDR whdr;
 
-CMainFrame* cff;
+	CMainFrame* cff;
 
-int i,ilg,nuo,iki;
-CString eilute;
-BOOL NeedWord;
+	int i, ilg, nuo, iki;
+	CString eilute;
+	BOOL NeedWord;
 
-CString Zodis;
+	CString Zodis;
 
-int balsas;
+	int balsas;
 
-//struct event {short Id; short phonviz; int charOffset; long signOffset;}; 
-int evsize;
-int evsizet;
-event *evarr;
+	//struct event {short Id; short phonviz; int charOffset; long signOffset;}; 
+	int evsize;
+	int evsizet;
+	event *evarr;
 
-long largebufsize;
-long largebufsizet;
-short *largebuf; //sintezuotas signalas
+	long largebufsize;
+	long largebufsizet;
+	short *largebuf; //sintezuotas signalas
 
-int nuoe, ikie;
+	int nuoe, ikie;
 
-// Attributes
+	// Attributes
 public:
-	CRedakDoc* GetDocument();
+	CRedakDoc * GetDocument();
 
-// Operations
+	// Operations
 public:
 
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CRedakView)
-	public:
+	// Overrides
+		// ClassWizard generated virtual function overrides
+		//{{AFX_VIRTUAL(CRedakView)
+public:
 	virtual void OnDraw(CDC* pDC);  // overridden to draw this view
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 	virtual BOOL Create(LPCTSTR lpszClassName, LPCTSTR lpszWindowName, DWORD dwStyle, const RECT& rect, CWnd* pParentWnd, UINT nID, CCreateContext* pContext = NULL);
-	protected:
+protected:
 	virtual BOOL OnPreparePrinting(CPrintInfo* pInfo);
 	virtual void OnBeginPrinting(CDC* pDC, CPrintInfo* pInfo);
 	virtual void OnEndPrinting(CDC* pDC, CPrintInfo* pInfo);
@@ -77,7 +77,7 @@ public:
 
 protected:
 
-// Generated message map functions
+	// Generated message map functions
 protected:
 	//{{AFX_MSG(CRedakView)
 	afx_msg void OnSelSuzinoti();
@@ -94,7 +94,9 @@ protected:
 
 #ifndef _DEBUG  // debug version in redakView.cpp
 inline CRedakDoc* CRedakView::GetDocument()
-   { return (CRedakDoc*)m_pDocument; }
+{
+	return (CRedakDoc*)m_pDocument;
+}
 #endif
 
 /////////////////////////////////////////////////////////////////////////////

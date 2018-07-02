@@ -3,15 +3,15 @@
 #ifndef __LITHUSS_H__
 #define __LITHUSS_H__
 
-struct event {short Id; short phonviz; int charOffset; long signOffset;}; 
+struct event {short Id; short phonviz; int charOffset; long signOffset; };
 
-typedef int (*PROCICC) (char*, char*);
-typedef int (*PROCISSII)(char*, char*, int, int*);
-typedef int (*PROCISSIUUII)(char*, char*, int, unsigned short*, unsigned short*, int*, int*);
-typedef int (*PROCIUUIUU)(unsigned short*, unsigned short*, int, unsigned int*, unsigned short*);
-typedef int (*PROCIIUUUS)(int, unsigned short, unsigned int, short**);
+typedef int(*PROCICC) (char*, char*);
+typedef int(*PROCISSII)(char*, char*, int, int*);
+typedef int(*PROCISSIUUII)(char*, char*, int, unsigned short*, unsigned short*, int*, int*);
+typedef int(*PROCIUUIUU)(unsigned short*, unsigned short*, int, unsigned int*, unsigned short*);
+typedef int(*PROCIIUUUS)(int, unsigned short, unsigned int, short**);
 typedef char* (*PROCSU)(unsigned short);
-typedef int (*PROCICSLEIII)(char*, short*, long*, event*, int*, int, int);
+typedef int(*PROCICSLEIII)(char*, short*, long*, event*, int*, int, int);
 
 extern PROCICC		initLUSS;
 extern PROCISSII	normalizeText1;

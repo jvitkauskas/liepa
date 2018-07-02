@@ -1,10 +1,12 @@
 #define VIrSk 8739
 #define VKamSk 8733
 
-typedef struct KamKvPriegaid{char *KamPb; char KircSkiem; char Prieg;} KamKvPrieg;
-static struct VeiksmKam{char *KamPr; KamKvPrieg KamKvP[3];
-     char Asmenuote; char KircPriesd; char EsLDS; char BDS;
-     char skiem; char tarpt;} VKam[VIrSk] = {
+typedef struct KamKvPriegaid { char *KamPb; char KircSkiem; char Prieg; } KamKvPrieg;
+static struct VeiksmKam {
+	char *KamPr; KamKvPrieg KamKvP[3];
+	char Asmenuote; char KircPriesd; char EsLDS; char BDS;
+	char skiem; char tarpt;
+} VKam[VIrSk] = {
 {"A", "NK", 1, 2, "K", 1, 2, "K", 1, 0, 1, 0, 0, 0, 0, 0},
 {"ABEJO", "J", 1, 1, "J", 1, 1, "", 1, 1, 1, 0, 1, 1, 0, 0},
 {"ABLAKT", "UOJ", 1, 1, "AV", 1, 2, "UO", 1, 1, 1, 0, 1, 1, 0, 0},
@@ -8743,4 +8745,4 @@ static struct VeiksmKam{char *KamPr; KamKvPrieg KamKvP[3];
 {"", "IR", 1, 0, "YR", 1, 1, "IR", 1, 1, 8, 1, 0, 0, 0, 0},
 {"", "YR", 1, 2, "IR", 1, 0, "IR", 1, 1, 1, 0, 0, 0, 0, 0},
 {"", "YÞT", 1, 2, "IÞ", 1, 0, "IÞ", 1, 0, 1, 0, 0, 0, 0, 0},
-{"", "ÛÞT", 1, 2, "UÞ", 1, 0, "UÞ", 1, 0, 1, 0, 0, 0, 0, 0}};
+{"", "ÛÞT", 1, 2, "UÞ", 1, 0, "UÞ", 1, 0, 1, 0, 0, 0, 0, 0} };

@@ -1,7 +1,9 @@
 #define NZodSk 2061
 
-static struct NekaitZod{char *Zodis;
-     char KircSkiem; char Priegaide; char skiem; char tarpt;} NZod[NZodSk] = {
+static struct NekaitZod {
+	char *Zodis;
+	char KircSkiem; char Priegaide; char skiem; char tarpt;
+} NZod[NZodSk] = {
 {"A", 0, 2, 0, 0},
 {"À", 0, 2, 0, 0},
 {"E", 0, 2, 0, 0},
@@ -2073,4 +2075,4 @@ static struct NekaitZod{char *Zodis;
 {"ANAPILIN", 2, 2, 0, 0},
 {"ÞENKLIAI", 1, 2, 0, 0},
 {"TOLYGIAI", 1, 1, 0, 0},
-{"NETOLYGIAI", 1, 1, 0, 0}};
+{"NETOLYGIAI", 1, 1, 0, 0} };

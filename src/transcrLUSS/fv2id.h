@@ -1,6 +1,6 @@
 #define FonSk 92
 
-static struct FonVardai{char *fv; unsigned short id;} FonV[FonSk] = {
+static struct FonVardai { char *fv; unsigned short id; } FonV[FonSk] = {
 {"_", 0},
 {"i", 1},
 {"e", 2},
@@ -92,7 +92,7 @@ static struct FonVardai{char *fv; unsigned short id;} FonV[FonSk] = {
 {"n",   88},
 {"n\'", 89},
 {"N",   90},
-{"N\'", 91}};
+{"N\'", 91} };
 
 int trText2UnitList(char*, unsigned short*, unsigned short*);
 unsigned short fv2id(char*);

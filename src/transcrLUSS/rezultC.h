@@ -1,6 +1,6 @@
 #define total_auto_rules 1155
 
-static int auto_rules[total_auto_rules][6]={
+static int auto_rules[total_auto_rules][6] = {
 {1, -1, -1, 0, -1, -1},
 {1, -1, -1, 2, -1, -1},
 {2, 14, 26, 0, 848, -1},
@@ -1155,4 +1155,4 @@ static int auto_rules[total_auto_rules][6]={
 {0, 401, -1, 0, 438, -1},
 {0, 625, -1, 0, 501, -1},
 {0, 713, -1, 0, 719, -1},
-{0, 1040, -1, 0, 1062, -1}};
+{0, 1040, -1, 0, 1062, -1} };

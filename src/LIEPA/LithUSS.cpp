@@ -12,15 +12,15 @@ PROCICSLEIII	synthesizeWholeText;
 
 BOOL loadLUSS(char *biblioteka)
 {
-	if (!(hinstDllLUSS=LoadLibrary(biblioteka))) //"LithUSS.dll"
+	if (!(hinstDllLUSS = LoadLibrary(biblioteka))) //"LithUSS.dll"
 		return FALSE;
-	initLUSS			=(PROCICC) GetProcAddress(hinstDllLUSS,"initLUSS");
-	normalizeText1		=(PROCISSII) GetProcAddress(hinstDllLUSS,"normalizeText1");
-	stressTranscr		=(PROCISSIUUII) GetProcAddress(hinstDllLUSS,"stressTranscr");
-	findUnits			=(PROCIUUIUU) GetProcAddress(hinstDllLUSS,"findUnits");
-	synthesizePhoneme	=(PROCIIUUUS) GetProcAddress(hinstDllLUSS,"synthesizePhoneme");
-	id2fv				=(PROCSU) GetProcAddress(hinstDllLUSS,"id2fv");
-	synthesizeWholeText	=(PROCICSLEIII) GetProcAddress(hinstDllLUSS,"synthesizeWholeText");
+	initLUSS = (PROCICC)GetProcAddress(hinstDllLUSS, "initLUSS");
+	normalizeText1 = (PROCISSII)GetProcAddress(hinstDllLUSS, "normalizeText1");
+	stressTranscr = (PROCISSIUUII)GetProcAddress(hinstDllLUSS, "stressTranscr");
+	findUnits = (PROCIUUIUU)GetProcAddress(hinstDllLUSS, "findUnits");
+	synthesizePhoneme = (PROCIIUUUS)GetProcAddress(hinstDllLUSS, "synthesizePhoneme");
+	id2fv = (PROCSU)GetProcAddress(hinstDllLUSS, "id2fv");
+	synthesizeWholeText = (PROCICSLEIII)GetProcAddress(hinstDllLUSS, "synthesizeWholeText");
 
 	if ((!initLUSS)
 		|| (!normalizeText1)
@@ -30,8 +30,8 @@ BOOL loadLUSS(char *biblioteka)
 		|| (!id2fv)
 		|| (!synthesizeWholeText))
 	{
-    	FreeLibrary (hinstDllLUSS); 
-		hinstDllLUSS=NULL;
+		FreeLibrary(hinstDllLUSS);
+		hinstDllLUSS = NULL;
 		return FALSE;
 	}
 	return TRUE;
@@ -41,7 +41,7 @@ void unloadLUSS()
 {
 	if (hinstDllLUSS)
 	{
-		FreeLibrary (hinstDllLUSS);
-		hinstDllLUSS=NULL;
+		FreeLibrary(hinstDllLUSS);
+		hinstDllLUSS = NULL;
 	}
 }

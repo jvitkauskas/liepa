@@ -80,12 +80,12 @@ struct burbulas
 
 /*********************************************************
  * Kontekstas
- * 
- * Kad sintezavimas veiktø daugelio gijø reþimu 
- * (kai pakrauta viena garsø bazë, taèiau funkcija change_phoneme_rate() ið RateChange.cpp gali bûti vienu metu kvieèiama ið skirtingø gijø), 
- * neturi bûti globaliø kintamøjø, á kuriuos raðoma sintezavimo metu 
- * (pastaba: gali bûti globalûs kintamieji, á kuriuos raðoma garsø bazës uþkrovimo metu). 
- * Visus tokius globalius kintamuosius, á kuriuos iki ðiol buvo raðoma sintezavimo metu, nuo ðiol reikia perduoti kaip funkcijø parametrus. 
+ *
+ * Kad sintezavimas veiktø daugelio gijø reþimu
+ * (kai pakrauta viena garsø bazë, taèiau funkcija change_phoneme_rate() ið RateChange.cpp gali bûti vienu metu kvieèiama ið skirtingø gijø),
+ * neturi bûti globaliø kintamøjø, á kuriuos raðoma sintezavimo metu
+ * (pastaba: gali bûti globalûs kintamieji, á kuriuos raðoma garsø bazës uþkrovimo metu).
+ * Visus tokius globalius kintamuosius, á kuriuos iki ðiol buvo raðoma sintezavimo metu, nuo ðiol reikia perduoti kaip funkcijø parametrus.
  * Kadangi jø nemaþai, juos sudedu á vienà struktûrà, kurià ir perduosiu.
  ********************************************************/
 
@@ -104,31 +104,31 @@ struct tkontekstas {
 
 	// kiek pikø yra tarp fonemos pradþios ir pabaigos
 	unsigned int piku_sk;
-	
+
 	// Greitinimo koeficientas (kiek kartø turi pailgëti signalas)
 	double greitinimo_koef;
 
 	// Tarpo tarp pikø didinimo koeficientas (kiek kartø turi padidëti tarpas tarp pikø)
 	double tarpo_tarp_piku_didinimo_koef;
-	
+
 	// skirtumas tarp to, koks plotis buvo panaudotas rezultatuose, ir koks duomenyse.
 	// Bus neigiamas, jei signalo rezultatas sutrumpëjo, ir teigiamas, jei pailgëjo.
 	// Per tiek padidës fonemø ilgiai
 	int einamasis_postumis;
-	
+
 	// einamasis garso signalo masyvo indeksas
 	size_t einamasis_signalo_nr;
-	
+
 	// garso signalo masyvas, iðskiriamas dinamiðkai
 	short * naujas_signalas;
-	
+
 	// naujojo garso signalo masyvo ilgis (ne signalo ilgis, o kiek iðskirta vietos masyvui. 
 	// Paprastai masyvo ilgis didesnis uþ signalo ilgá)
 	size_t naujo_signalo_masyvo_ilgis;
-	
+
 	// garso signalo ilgis
 	//size_t naujo_signalo_ilgis;
-	
+
 	// einamasis naujo garso signalo masyvo indeksas
 	size_t einamasis_naujo_signalo_nr;
 
@@ -136,7 +136,7 @@ struct tkontekstas {
 	// (negalima - jei masyvas naujas_signalas gautas ið iðorës (jei greitinama ið funkcijos change_phoneme_rate), 
 	// galima - jei atmintis jam iðskirta viduje (RateChange.dll'e) (jei greitinama ið funkcijos change_DB_rate))
 	int galima_pailginti_naujas_signalas;
-	
+
 	// Euristika nustatys, kuriuos burbuliukus reikia paðalinti ar dubliuoti. 
 	// Jø sàraðà pateiks ðiame kintamajame "burbulai". 
 	// Kad nereikëtø pastoviai iðskirinëti jam atminties, 
@@ -146,7 +146,7 @@ struct tkontekstas {
 
 	// keièiamø (ðalinamø ar dubliuojamø) burbulø skaièius
 	int keiciamu_burbulu_sk;
-	
+
 	// fonemos klasë, nurodanti, ar ilginimui turime pikø informacijà, ar ne 
 	// (FONEMU_KLASE_SKARDIEJI - turime, FONEMU_KLASE_DUSLIEJI - ne, FONEMU_KLASE_RR - nieko nedarome)
 	int fonemos_klase;
@@ -184,35 +184,35 @@ extern size_t piku_kiekis;
 extern const int scenarijus;
 extern double scenarijaus5_koeficientas;
 
-void klaida (char * klaidos_pranesimas);
-void spausdinti_burbulus (struct burbulas * burbulai, int burbulu_sk);
-int kopijuoti_signala_pradzioj (struct tkontekstas * kontekstas);
-int kopijuoti_signala_pabaigoj (struct tkontekstas * kontekstas);
-int kopijuoti_signala (size_t iki, struct tkontekstas * kontekstas);
-int trumpinti_fonema (struct tkontekstas * kontekstas);
-int ilginti_fonema (struct tkontekstas * kontekstas);
-int vykdyti (int greitis, int tono_aukscio_pokytis, struct tkontekstas * kontekstas);
+void klaida(char * klaidos_pranesimas);
+void spausdinti_burbulus(struct burbulas * burbulai, int burbulu_sk);
+int kopijuoti_signala_pradzioj(struct tkontekstas * kontekstas);
+int kopijuoti_signala_pabaigoj(struct tkontekstas * kontekstas);
+int kopijuoti_signala(size_t iki, struct tkontekstas * kontekstas);
+int trumpinti_fonema(struct tkontekstas * kontekstas);
+int ilginti_fonema(struct tkontekstas * kontekstas);
+int vykdyti(int greitis, int tono_aukscio_pokytis, struct tkontekstas * kontekstas);
 
 /*********************************************************
  * VeiksmaiSuFailais.cpp
  ********************************************************/
 
-void sukurti_kataloga (char * katalogoVardas);
-int failu_sarasas_is_katalogo (char * katalogoVardas, char ** failu_vardai);
+void sukurti_kataloga(char * katalogoVardas);
+int failu_sarasas_is_katalogo(char * katalogoVardas, char ** failu_vardai);
 
-int nuskaityti_anotacijas (char * fonemu_failo_pavadinimas, char *** fonemos1, int ** fonemu_ilgiai1, size_t * fonemu_kiekis1);
-int nuskaityti_duomenis ();
-int nuskaityti_ilginimo_koeficientus (char * failo_pavadinimas, float ** pateikti_koef1, float ** faktiniai_koef1, int * koef_skaicius);
+int nuskaityti_anotacijas(char * fonemu_failo_pavadinimas, char *** fonemos1, int ** fonemu_ilgiai1, size_t * fonemu_kiekis1);
+int nuskaityti_duomenis();
+int nuskaityti_ilginimo_koeficientus(char * failo_pavadinimas, float ** pateikti_koef1, float ** faktiniai_koef1, int * koef_skaicius);
 
-int irasyti_anotacijas ();
-int irasyti_duomenis (struct tkontekstas * kontekstas);
+int irasyti_anotacijas();
+int irasyti_duomenis(struct tkontekstas * kontekstas);
 
 /*********************************************************
  * Euristika.cpp
  ********************************************************/
 
-void euristika (struct tkontekstas * kontekstas);
-bool reguliarus_pikai (struct tkontekstas * kontekstas);
+void euristika(struct tkontekstas * kontekstas);
+bool reguliarus_pikai(struct tkontekstas * kontekstas);
 
 /*********************************************************
  * RateChange.cpp
@@ -221,8 +221,8 @@ bool reguliarus_pikai (struct tkontekstas * kontekstas);
 extern int debuginam;
 
 void spausdinti_loga(char* pranesimas);
-void spausdinti_konteksta (struct tkontekstas * kontekstas);
-int fonemosKlase (struct tkontekstas * kontekstas);
+void spausdinti_konteksta(struct tkontekstas * kontekstas);
+int fonemosKlase(struct tkontekstas * kontekstas);
 
 /*********************************************************
  * Klaidø kodai

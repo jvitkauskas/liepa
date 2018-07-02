@@ -2,8 +2,10 @@
 #include <string.h>
 #define TaisSk 77
 
-static struct NekircZod{char *kz[2]; char *ez; char *dz[2];
-						int arKirc;} NkZod[TaisSk] = {
+static struct NekircZod {
+	char *kz[2]; char *ez; char *dz[2];
+	int arKirc;
+} NkZod[TaisSk] = {
 {{""}, "AR", {""}, 0},
 {{""}, "ARBA", {""}, 0},
 {{""}, "BET", {""}, 0},
@@ -80,15 +82,15 @@ static struct NekircZod{char *kz[2]; char *ez; char *dz[2];
 {{""}, "TIES", {""}, 0},
 {{""}, "JAU", {""}, 0},
 {{""}, "TIK", {""}, 0},
-{{""}, "IKI", {""}, 0}};
+{{""}, "IKI", {""}, 0} };
 
 int ArKirciuoti(char *kz, char * ez, char *dz)
 {
-int i;
-for(i=0; i<TaisSk; i++)
-	if((strcmp(ez, NkZod[i].ez)==0)
-		&&((NkZod[i].dz[0][0]==0)||(strcmp(dz, NkZod[i].dz[0])==0)))
-		return NkZod[i].arKirc;
+	int i;
+	for (i = 0; i < TaisSk; i++)
+		if ((strcmp(ez, NkZod[i].ez) == 0)
+			&& ((NkZod[i].dz[0][0] == 0) || (strcmp(dz, NkZod[i].dz[0]) == 0)))
+			return NkZod[i].arKirc;
 
-return 1;
+	return 1;
 }

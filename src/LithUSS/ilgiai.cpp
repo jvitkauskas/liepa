@@ -10,20 +10,20 @@
 #define BalsiaiStartId 1
 #define PriebalsiaiStartId 35
 
-static struct FonIlgiai{char fv[4]; unsigned short id; unsigned short vid; unsigned short min; double koef[KoefSk];} FonIlg[FonSk] ;
+static struct FonIlgiai { char fv[4]; unsigned short id; unsigned short vid; unsigned short min; double koef[KoefSk]; } FonIlg[FonSk];
 
 // + þodþio riba, - skiemens riba, tarpas fonemos riba,
 // sakinio pradþioje/pabaigoje yra pauzë, t.y. pabraukimo simbolis.
 
 bool isBalsis(unsigned short id) {
-	if( BalsiaiStartId <= id && id < PriebalsiaiStartId )
+	if (BalsiaiStartId <= id && id < PriebalsiaiStartId)
 		return true;
 	else
 		return false;
 }
 
 bool isPriebalsis(unsigned short id) {
-	if( id >= PriebalsiaiStartId )
+	if (id >= PriebalsiaiStartId)
 		return true;
 	else
 		return false;
@@ -31,28 +31,29 @@ bool isPriebalsis(unsigned short id) {
 
 unsigned short id2ilg(unsigned short *l, unsigned short len, unsigned short i)
 {
-	if(l[i] == FonIlg[0].id) {
+	if (l[i] == FonIlg[0].id) {
 		return FonIlg[0].vid; // pauze "_"
 	}
-	else if(isBalsis(l[i]) || isPriebalsis(l[i]))
+	else if (isBalsis(l[i]) || isPriebalsis(l[i]))
 	{
 		unsigned short startId, endId;
 		unsigned short f[KoefSk]; // visi 36 faktoriai 1.1 1.2 1.3 2.1 2.2 ... 12.1 12.2 13.1 13.2
 
-		for(int j = 0; j < KoefSk; j++) {
+		for (int j = 0; j < KoefSk; j++) {
 			f[j] = 0;						// 0 - netaikom faktoriaus, 1 taikom faktoriu
 		}
 
-		if(isBalsis(l[i])) { // jei BALSIS
+		if (isBalsis(l[i])) { // jei BALSIS
 			startId = BalsiaiStartId;
 			endId = PriebalsiaiStartId;
 
 			//--1 faktoriu grupe
-			if (i+1 < len) {
-				if (l[i+1] == 0) {  // l[i+1] == 0 sakinio pabaiga
+			if (i + 1 < len) {
+				if (l[i + 1] == 0) {  // l[i+1] == 0 sakinio pabaiga
 					f[0] = 1;  // 1.1 Balsis sakinio gale
-				} else {
-					int ii = i+1;
+				}
+				else {
+					int ii = i + 1;
 					while (ii < len && isPriebalsis(l[ii]))
 						ii++;
 
@@ -63,13 +64,14 @@ unsigned short id2ilg(unsigned short *l, unsigned short len, unsigned short i)
 				}
 			}  //--1
 
-		} else if (isPriebalsis(l[i])) { // jei PRIEBALSIS
+		}
+		else if (isPriebalsis(l[i])) { // jei PRIEBALSIS
 			startId = PriebalsiaiStartId;
 			endId = FonSk;
 
 			//--2 faktoriu grupe
-			if(i+1 < len) {
-				if (l[i+1] == 0)
+			if (i + 1 < len) {
+				if (l[i + 1] == 0)
 					f[3] = 1; //2.1 Priebalsis sakinio gale
 				else
 					f[4] = 1; //2.2 Priebalsis ne sakinio gale
@@ -80,14 +82,14 @@ unsigned short id2ilg(unsigned short *l, unsigned short len, unsigned short i)
 				f[8] = 1;  //4.1 Priebalsis sakinio pradzioje
 			else if (i > 0)
 			{
-				if ( l[i-1] == 0 )
+				if (l[i - 1] == 0)
 					f[8] = 1;  //4.1 Priebalsis sakinio pradzioje
 				else
 					f[9] = 1;  //4.2 Priebalsis ne sakinio pradzioje
 			} //--4
 
 			//--12 faktoriu grupe
-			if ( (i-1 >= 0 && isPriebalsis(l[i-1])) || (i+1 < len && isPriebalsis(l[i+1])) )
+			if ((i - 1 >= 0 && isPriebalsis(l[i - 1])) || (i + 1 < len && isPriebalsis(l[i + 1])))
 				f[32] = 1; //12.1 Priebalsis priebalsiu grupeje
 			else
 				f[33] = 1; //12.2 Priebalsis ne priebalsiu grupeje
@@ -97,12 +99,12 @@ unsigned short id2ilg(unsigned short *l, unsigned short len, unsigned short i)
 		// Pradedam skaiciuoti bendra daugikli f1*f2*... ir atitinkama fonemos ilgi:
 		double fFinal = 1;  // visu veikianciu faktoriu sandauga
 
-		for(int k = startId; k < endId; k++) {
+		for (int k = startId; k < endId; k++) {
 
-			if(l[i] == FonIlg[k].id) { // vietoj sito for()+if() galima padaryti binary search, jei reikia
+			if (l[i] == FonIlg[k].id) { // vietoj sito for()+if() galima padaryti binary search, jei reikia
 
-				for(int j = 0; j < KoefSk; j++) {
-					if(f[j] == 1)
+				for (int j = 0; j < KoefSk; j++) {
+					if (f[j] == 1)
 						fFinal *= FonIlg[k].koef[j];
 				}
 
@@ -118,7 +120,7 @@ unsigned short id2ilg(unsigned short *l, unsigned short len, unsigned short i)
 
 void ilgiai(unsigned short *units, unsigned short *unitseparators, int unitscount, unsigned short *unitslen)
 {
-	for(int i=0; i < unitscount; i++)
+	for (int i = 0; i < unitscount; i++)
 	{
 		unitslen[i] = id2ilg(units, unitscount, i);
 	}
@@ -130,21 +132,20 @@ int initFaktoriai(char *dirVardas)
 	strcpy(duomenuByla, dirVardas);
 	strcat(duomenuByla, "faktoriai.txt");
 
-	FILE * pFile = fopen (duomenuByla, "r");
+	FILE * pFile = fopen(duomenuByla, "r");
 	if (pFile == NULL) return ERROR_LITHUSS_OPENING_FACTORS_FILE; //nepavyko atidaryti failo faktoriai.txt
 
 	int ll, j = 0;
 	do
-		{
+	{
 		ll = fscanf(pFile, "%s %d %d %d", FonIlg[j].fv, &FonIlg[j].id, &FonIlg[j].vid, &FonIlg[j].min);
-		for(int k = 0; k < KoefSk; k++)
+		for (int k = 0; k < KoefSk; k++)
 			ll += fscanf(pFile, "%lf", &FonIlg[j].koef[k]);
 		fscanf(pFile, "\n");
 		j++;
-		}
-	while((j < FonSk) && (ll == KoefSk+4));
+	} while ((j < FonSk) && (ll == KoefSk + 4));
 
-	if((j < FonSk) || (ll < KoefSk+4)) return ERROR_LITHUSS_READING_FACTORS_FILE; //klaida nuskaitant duomenis is failo faktoriai.txt. Duomenys neatitinka reikalaujamo formato
+	if ((j < FonSk) || (ll < KoefSk + 4)) return ERROR_LITHUSS_READING_FACTORS_FILE; //klaida nuskaitant duomenis is failo faktoriai.txt. Duomenys neatitinka reikalaujamo formato
 
 	return NO_ERR;
 }

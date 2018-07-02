@@ -12,7 +12,7 @@ char* strtokf(char*, const char*, char**);
 BOOL APIENTRY DllMain(HANDLE hModule,
 	DWORD  ul_reason_for_call,
 	LPVOID lpReserved
-	)
+)
 {
 	return TRUE;
 }
@@ -41,7 +41,7 @@ int keitimo_kaina_DK_precalculated[MAX_DIFFERENT_UNITS][MAX_DIFFERENT_UNITS][MAX
 int keitimo_kaina_KK_precalculated[MAX_DIFFERENT_UNITS][MAX_DIFFERENT_UNITS][MAX_DIFFERENT_UNITS];
 
 const int FonSk = 92;
-static struct FonVardai{ char *fv; unsigned short id; } FonV[FonSk] = {
+static struct FonVardai { char *fv; unsigned short id; } FonV[FonSk] = {
 	{ "_", 0 },
 	{ "i", 1 },
 	{ "e", 2 },
@@ -133,13 +133,13 @@ static struct FonVardai{ char *fv; unsigned short id; } FonV[FonSk] = {
 	{ "n", 88 },
 	{ "n\'", 89 },
 	{ "N", 90 },
-	{ "N\'", 91 }};
+	{ "N\'", 91 } };
 
 unsigned short fv2id(char *fpav)
 {
-	for (int i = 0; i<FonSk; i++)
-	if (strcmp(fpav, FonV[i].fv) == 0)
-		return FonV[i].id;
+	for (int i = 0; i < FonSk; i++)
+		if (strcmp(fpav, FonV[i].fv) == 0)
+			return FonV[i].id;
 
 	return FonV[0].id; //pauze "_"
 }
@@ -160,19 +160,19 @@ int getDBFromFile(char * dataBaseFileName)
 	while (fgets(visaEilute, 1024, pFile) != NULL)
 	{
 		int totalSylsNum;
-		int currentSylNum;		
+		int currentSylNum;
 
 		int totalWordsNum = 0;
 		int ii = 0;
-		while ((visaEilute[ii] != '\n' ) && (visaEilute[ii] != '\r' ) && (visaEilute[ii] != 0 ) && (ii < 1024))
+		while ((visaEilute[ii] != '\n') && (visaEilute[ii] != '\r') && (visaEilute[ii] != 0) && (ii < 1024))
 		{
-			if(visaEilute[ii] == '+') totalWordsNum++;
+			if (visaEilute[ii] == '+') totalWordsNum++;
 			ii++;
 		}
 		totalWordsNum--;
 
 		int eilutesIlgis = ii;
-		if (eilutesIlgis < 4 || visaEilute[0] != '_' || visaEilute[1] != '+' || visaEilute[eilutesIlgis-2] != '+' || visaEilute[eilutesIlgis-1] != '_')
+		if (eilutesIlgis < 4 || visaEilute[0] != '_' || visaEilute[1] != '+' || visaEilute[eilutesIlgis - 2] != '+' || visaEilute[eilutesIlgis - 1] != '_')
 		{
 			fclose(pFile);
 			return ERROR_UNITSELECTION_READING_DB_FON_FILE;
@@ -307,19 +307,19 @@ int initCosts(char * dataBaseDirName)
 					nextSep = bufferString.find(' ', lastSep);
 					j++;
 				}
-				if ( j != 0 )
+				if (j != 0)
 				{
-					if ( j != FonSk )
+					if (j != FonSk)
 					{
 						fclose(file);
 						return ERROR_UNITSELECTION_READING_JOINING_COSTS_FILE;
 					}
 					i++;
-				}				
-			}			
+				}
+			}
 		}
 		fclose(file);
-		if ( i != FonSk )
+		if (i != FonSk)
 		{
 			return ERROR_UNITSELECTION_READING_JOINING_COSTS_FILE;
 		}
@@ -351,11 +351,11 @@ int initCosts(char * dataBaseDirName)
 					j++;
 				}
 
-				if ( j != 0 )
+				if (j != 0)
 				{
-					if ( j != FonSk )
+					if (j != FonSk)
 					{
-						fclose(file);						
+						fclose(file);
 						return ERROR_UNITSELECTION_READING_LEFT_SUBSTITUTION_COSTS_FILE;
 					}
 					i++;
@@ -368,7 +368,7 @@ int initCosts(char * dataBaseDirName)
 			}
 		}
 		fclose(file);
-		if ( k != FonSk )
+		if (k != FonSk)
 		{
 			return ERROR_UNITSELECTION_READING_LEFT_SUBSTITUTION_COSTS_FILE;
 		}
@@ -399,11 +399,11 @@ int initCosts(char * dataBaseDirName)
 					nextSep = bufferString.find(' ', lastSep);
 					j++;
 				}
-				if ( j != 0 )
+				if (j != 0)
 				{
-					if ( j != FonSk )
+					if (j != FonSk)
 					{
-						fclose(file);						
+						fclose(file);
 						return ERROR_UNITSELECTION_READING_RIGHT_SUBSTITUTION_COSTS_FILE;
 					}
 					i++;
@@ -416,7 +416,7 @@ int initCosts(char * dataBaseDirName)
 			}
 		}
 		fclose(file);
-		if ( k != FonSk )
+		if (k != FonSk)
 		{
 			return ERROR_UNITSELECTION_READING_RIGHT_SUBSTITUTION_COSTS_FILE;
 		}
@@ -469,17 +469,17 @@ int getDBWeightsAndLengthsFromFile(char * dataBaseFileName)
 int initUnitSel(char * dataBaseDirName)
 {
 	char laikKat[200];
-		
+
 	// Nuskaitome nustatymus is UnitSelectionSettings.txt
 	strcpy(laikKat, dataBaseDirName);
 	strcat(laikKat, "UnitSelectionSettings.txt");
 	FILE * pFile = fopen(laikKat, "r");
-	if(pFile == NULL) return ERROR_UNITSELECTION_OPENING_SETTINGS_FILE;
+	if (pFile == NULL) return ERROR_UNITSELECTION_OPENING_SETTINGS_FILE;
 	int lineNum = 0;
 	char tmpBuffer[128];
 	int sscanf_res;
 	while (fgets(tmpBuffer, 128, pFile) != NULL)
-	{	
+	{
 		sscanf_res = 0;
 		switch (lineNum)
 		{
@@ -495,11 +495,11 @@ int initUnitSel(char * dataBaseDirName)
 		lineNum++;
 		if (sscanf_res != 1)
 		{
-			fclose(pFile);	
+			fclose(pFile);
 			return ERROR_UNITSELECTION_READING_SETTINGS_FILE;
 		}
 	}
-	fclose(pFile);	
+	fclose(pFile);
 	if (lineNum < 8)
 		return ERROR_UNITSELECTION_READING_SETTINGS_FILE;
 
@@ -508,18 +508,18 @@ int initUnitSel(char * dataBaseDirName)
 	n_total_DBunits = 0;
 	for (int i = 0; i < MAX_DIFFERENT_UNITS; i++)
 		unit_segments_lengths[i] = 0;
-	if ((res=initCosts(dataBaseDirName)) != 0) return res;
+	if ((res = initCosts(dataBaseDirName)) != 0) return res;
 
 	// Nuskaitome DB is db_fon.txt
 	strcpy(laikKat, dataBaseDirName);
 	strcat(laikKat, "db_fon.txt");
-	if ((res=getDBFromFile(laikKat)) != 0) return res;
-	
+	if ((res = getDBFromFile(laikKat)) != 0) return res;
+
 	// Nuskaitome svorius is db_fon_weights.txt
 	strcpy(laikKat, dataBaseDirName);
 	strcat(laikKat, "db_fon_weights.txt");
-	if ((res=getDBWeightsAndLengthsFromFile(laikKat)) != 0) return res;
-		
+	if ((res = getDBWeightsAndLengthsFromFile(laikKat)) != 0) return res;
+
 	return NO_ERR;//SUCCESS;
 }
 
@@ -681,7 +681,7 @@ int selectUnits(unsigned short unitsRow[], unsigned short unitsRowNextSeparators
 			K = int(K * float(keitimoKainuSvoris / 100.0f));
 
 			K += int(unitsWeights[m] * float(unitsWeightsKoef / 100.0f));
-			if ((unitsLengths[m] > 0) && (unitsRowDurr[i] > 0)) K += int(abs(unitsLengths[m] - unitsRowDurr[i]*22.05f)*float(unitsLengthsKoef / 100.0f));
+			if ((unitsLengths[m] > 0) && (unitsRowDurr[i] > 0)) K += int(abs(unitsLengths[m] - unitsRowDurr[i] * 22.05f)*float(unitsLengthsKoef / 100.0f));
 
 			if ((unitsDB_E1[m] & E1) == false) K += E1_koef;
 			if ((unitsDB_E2[m] & E2) == false) K += E2_koef;
@@ -705,10 +705,10 @@ int selectUnits(unsigned short unitsRow[], unsigned short unitsRowNextSeparators
 					else
 					{
 						for (s = seq_index; s < n_total_units_seq; s++)
-						if (p_units_sequences_arrayunit_num_in_DB[s] == (m - 1))
-						{
-							n_same_seq = s; break;
-						}
+							if (p_units_sequences_arrayunit_num_in_DB[s] == (m - 1))
+							{
+								n_same_seq = s; break;
+							}
 
 						if (s == n_total_units_seq) n_same_seq = -1;
 					}
@@ -767,10 +767,10 @@ int selectUnits(unsigned short unitsRow[], unsigned short unitsRowNextSeparators
 						else
 						{
 							for (s = seq_index; s < n_total_units_seq; s++)
-							if (p_units_sequences_arrayunit_num_in_DB[s] == (m - 1))
-							{
-								n_same_seq = s; break;
-							}
+								if (p_units_sequences_arrayunit_num_in_DB[s] == (m - 1))
+								{
+									n_same_seq = s; break;
+								}
 
 							if (s == n_total_units_seq) n_same_seq = -1;
 						}

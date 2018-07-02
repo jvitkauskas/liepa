@@ -10,48 +10,48 @@
  */
 char* strtokf(char *string, const char *seps, char **context)
 {
-        char *head;  /* start of word */
-        char *tail;  /* end of word */
+	char *head;  /* start of word */
+	char *tail;  /* end of word */
 
-        /* If we're starting up, initialize context */
-        if (string) {
-                *context = string;
-        }
+	/* If we're starting up, initialize context */
+	if (string) {
+		*context = string;
+	}
 
-        /* Get potential start of this next word */
-        head = *context;
-        if (head == NULL) {
-                return NULL;
-        }
+	/* Get potential start of this next word */
+	head = *context;
+	if (head == NULL) {
+		return NULL;
+	}
 
-        /* Skip any leading separators */
-        while (*head && strchr(seps, *head)) {
-                head++;
-        }
+	/* Skip any leading separators */
+	while (*head && strchr(seps, *head)) {
+		head++;
+	}
 
-        /* Did we hit the end? */
-        if (*head == 0) {
-                /* Nothing left */
-                *context = NULL;
-                return NULL;
-        }
+	/* Did we hit the end? */
+	if (*head == 0) {
+		/* Nothing left */
+		*context = NULL;
+		return NULL;
+	}
 
-        /* skip over word */
-        tail = head;
-        while (*tail && !strchr(seps, *tail)) {
-                tail++;
-        }
+	/* skip over word */
+	tail = head;
+	while (*tail && !strchr(seps, *tail)) {
+		tail++;
+	}
 
-        /* Save head for next time in context */
-        if (*tail == 0) {
-                *context = NULL;
-        }
-        else {
-                *tail = 0;
-                tail++;
-                *context = tail;
-        }
+	/* Save head for next time in context */
+	if (*tail == 0) {
+		*context = NULL;
+	}
+	else {
+		*tail = 0;
+		tail++;
+		*context = tail;
+	}
 
-        /* Return current word */
-        return head;
+	/* Return current word */
+	return head;
 }

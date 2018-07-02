@@ -59,38 +59,38 @@ const char* stringWithLetterPosition::c_str()
 
 void stringWithLetterPosition::replaceLetPos(int * letPos, int pra, int ilgo, int ilgn)
 {
-	int ilg_skirt = (ilgn-ilgo);
-	
+	int ilg_skirt = (ilgn - ilgo);
+
 	int letPosPab = buffer.length();
 
 	int i;
 	if (ilg_skirt < 0)
 	{
-		for(i = pra+ilgn; i < letPosPab; i++)
-			letPos[i] = letPos[i-ilg_skirt];
+		for (i = pra + ilgn; i < letPosPab; i++)
+			letPos[i] = letPos[i - ilg_skirt];
 	}
 	else if (ilg_skirt > 0)
 	{
 		if (letPosPab + ilg_skirt >= letPosMaxBuffer)
 			return;
 
-		for(i = letPosPab+ilg_skirt; i >= pra+ilgo+ilg_skirt; i--)
-			letPos[i] = letPos[i-ilg_skirt];
+		for (i = letPosPab + ilg_skirt; i >= pra + ilgo + ilg_skirt; i--)
+			letPos[i] = letPos[i - ilg_skirt];
 	}
 
-	for(i = pra+1; i < pra+ilgn; i++)
+	for (i = pra + 1; i < pra + ilgn; i++)
 		letPos[i] = letPos[pra];
 }
 
 void stringWithLetterPosition::replace(int p, int l, string str)
 {
-	replaceLetPos(letPos, p, l, str.length());	
+	replaceLetPos(letPos, p, l, str.length());
 	buffer.replace(p, l, str);
 }
 
 void stringWithLetterPosition::replace(int p, int l, int s, char c)
 {
-	replaceLetPos(letPos, p, l, s);	
+	replaceLetPos(letPos, p, l, s);
 	buffer.replace(p, l, s, c);
 }
 
@@ -110,8 +110,8 @@ void stringWithLetterPosition::erase(int p, int l)
 {
 	int letPosPab = 0;
 	letPosPab = buffer.length();
-	for(int i = p; i < letPosPab; i++)
-		letPos[i] = letPos[i+l];
+	for (int i = p; i < letPosPab; i++)
+		letPos[i] = letPos[i + l];
 
 	buffer.erase(p, l);
 }
@@ -124,9 +124,9 @@ void stringWithLetterPosition::append(char* str)
 	if (letPosPab + pridetiIlgis >= letPosMaxBuffer)
 		return;
 
-	for(int i = 0; i < pridetiIlgis; i++)
+	for (int i = 0; i < pridetiIlgis; i++)
 	{
-		letPos[letPosPab] = letPos[letPosPab-1];
+		letPos[letPosPab] = letPos[letPosPab - 1];
 		letPosPab++;
 	}
 

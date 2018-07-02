@@ -9,7 +9,7 @@
 #endif // _MSC_VER >= 1000
 
 #ifndef __AFXWIN_H__
-	#error include 'stdafx.h' before including this file for PCH
+#error include 'stdafx.h' before including this file for PCH
 #endif
 
 #include "resource.h"       // main symbols
@@ -24,10 +24,10 @@ class CRedakApp : public CWinApp
 public:
 	CRedakApp();
 
-// Overrides
-	// ClassWizard generated virtual function overrides
-	//{{AFX_VIRTUAL(CRedakApp)
-	public:
+	// Overrides
+		// ClassWizard generated virtual function overrides
+		//{{AFX_VIRTUAL(CRedakApp)
+public:
 	virtual BOOL InitInstance();
 	//}}AFX_VIRTUAL
 

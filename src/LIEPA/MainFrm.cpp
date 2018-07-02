@@ -40,7 +40,7 @@ static UINT indicators[] =
 CMainFrame::CMainFrame()
 {
 	// TODO: add member initialization code here
-	
+
 }
 
 CMainFrame::~CMainFrame()
@@ -51,7 +51,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 {
 	if (CFrameWnd::OnCreate(lpCreateStruct) == -1)
 		return -1;
-	
+
 	if (!m_wndToolBar.Create(this) ||
 		!m_wndToolBar.LoadToolBar(IDR_MAINFRAME))
 	{
@@ -61,7 +61,7 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 
 	if (!m_wndStatusBar.Create(this) ||
 		!m_wndStatusBar.SetIndicators(indicators,
-		  sizeof(indicators)/sizeof(UINT)))
+			sizeof(indicators) / sizeof(UINT)))
 	{
 		TRACE0("Failed to create status bar\n");
 		return -1;      // fail to create
@@ -72,14 +72,14 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndToolBar.SetButtonInfo(nIndex, ID_COMBO, TBBS_SEPARATOR, 205);
 	m_wndToolBar.GetToolBarCtrl().GetItemRect(nIndex, &rect);
 	rect.top = 1;
-	rect.bottom = rect.top +250;
-	if(!m_comboBox.Create(CBS_DROPDOWNLIST | WS_VISIBLE |
+	rect.bottom = rect.top + 250;
+	if (!m_comboBox.Create(CBS_DROPDOWNLIST | WS_VISIBLE |
 		WS_TABSTOP | WS_VSCROLL, rect, &m_wndToolBar, ID_COMBO))
 	{
 		TRACE0("Failed to create combobox\n");
 		return -1;      // fail to create
 	}
-	
+
 	m_comboBox.AddString("Regina");		//0
 	m_comboBox.AddString("Aistë");		//1
 	m_comboBox.AddString("Edvardas");	//2
@@ -91,8 +91,8 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndToolBar.SetButtonInfo(nIndex2, ID_GREITIS, TBBS_SEPARATOR, 45);
 	m_wndToolBar.GetToolBarCtrl().GetItemRect(nIndex2, &rect2);
 	rect2.top = 1;
-	rect2.bottom = rect2.top +90;
-	if(!m_editGreitis.Create(ES_RIGHT | WS_VISIBLE |
+	rect2.bottom = rect2.top + 90;
+	if (!m_editGreitis.Create(ES_RIGHT | WS_VISIBLE |
 		WS_TABSTOP, rect2, &m_wndToolBar, ID_GREITIS))
 	{
 		TRACE0("Failed to create editGreitis\n");
@@ -105,8 +105,8 @@ int CMainFrame::OnCreate(LPCREATESTRUCT lpCreateStruct)
 	m_wndToolBar.SetButtonInfo(nIndex3, ID_TONAS, TBBS_SEPARATOR, 45);
 	m_wndToolBar.GetToolBarCtrl().GetItemRect(nIndex3, &rect3);
 	rect3.top = 1;
-	rect3.bottom = rect3.top +90;
-	if(!m_editTonas.Create(ES_RIGHT | WS_VISIBLE |
+	rect3.bottom = rect3.top + 90;
+	if (!m_editTonas.Create(ES_RIGHT | WS_VISIBLE |
 		WS_TABSTOP, rect3, &m_wndToolBar, ID_TONAS))
 	{
 		TRACE0("Failed to create editTonas\n");
@@ -157,7 +157,7 @@ void CMainFrame::Dump(CDumpContext& dc) const
 extern char *katvardai[4];
 char* getLUSSErrorMessages(int);
 
-void CMainFrame::OnCombo() 
+void CMainFrame::OnCombo()
 {
 	MessageBox("Keiciamas balsas. Prasau palaukti");
 
@@ -166,8 +166,10 @@ void CMainFrame::OnCombo()
 	m_wndStatusBar.SetPaneText(0, "Keièiamas balsas", TRUE);
 
 	int res;
-	if((res = initLUSS(".\\", katvardai[m_comboBox.GetCurSel()])) < 0)
-		{MessageBox(getLUSSErrorMessages(res));exit(EXIT_FAILURE);}
+	if ((res = initLUSS(".\\", katvardai[m_comboBox.GetCurSel()])) < 0)
+	{
+		MessageBox(getLUSSErrorMessages(res)); exit(EXIT_FAILURE);
+	}
 
 	m_wndStatusBar.SetPaneText(0, s, TRUE);
 }
@@ -175,30 +177,30 @@ void CMainFrame::OnCombo()
 extern int greicio_koeficientas;
 extern int tono_koeficientas;
 
-void CMainFrame::OnGreitis() 
+void CMainFrame::OnGreitis()
 {
 	CString s;
 	int ggg; char cc;
 	m_editGreitis.GetWindowText(s);
 	int jj = sscanf((LPCTSTR)s, "%d", &ggg, &cc);
-	if(jj != 1) 
-		{
+	if (jj != 1)
+	{
 		ggg = 100;
 		m_editGreitis.SetWindowText("100");
-		}
+	}
 	greicio_koeficientas = ggg;
 }
 
-void CMainFrame::OnTonas() 
+void CMainFrame::OnTonas()
 {
 	CString s;
 	int ttt; char cc;
 	m_editTonas.GetWindowText(s);
 	int jj = sscanf((LPCTSTR)s, "%d", &ttt, &cc);
-	if(jj != 1) 
-		{
+	if (jj != 1)
+	{
 		ttt = 100;
 		m_editTonas.SetWindowText("100");
-		}
+	}
 	tono_koeficientas = ttt;
 }
